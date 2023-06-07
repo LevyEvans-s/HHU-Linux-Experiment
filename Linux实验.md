@@ -140,7 +140,7 @@ vim 静夜思.txt
 
 命令使用示例：
 
-\1.  将一个自增序列写入test.txt文件中。
+1. 将一个自增序列写入test.txt文件中。
 
 ```
 for i in $(seq 1 10); do echo $i >> test.txt ; done
@@ -148,7 +148,7 @@ for i in $(seq 1 10); do echo $i >> test.txt ; done
 
 
 
-\2. 查看文件内容。
+2. 查看文件内容。
 
 ```
  cat test.txt
@@ -160,7 +160,7 @@ for i in $(seq 1 10); do echo $i >> test.txt ; done
 
 ![img](https://img.alicdn.com/tfs/TB17S4FHHr1gK0jSZR0XXbP8XXa-612-258.png)
 
-\3. 将文件内容清空。
+3. 将文件内容清空。
 
 ```
 cat /dev/null > test.txt
@@ -168,7 +168,7 @@ cat /dev/null > test.txt
 
 
 
-\4. 再次检查文件内容。
+4. 再次检查文件内容。
 
 ```
 cat test.txt
@@ -1151,7 +1151,7 @@ ifconfig
 
 
 
-![image-20230607192504876](.\images\ifconfig.png)
+![image-20230607192504876](./images/ifconfig.png)
 
 命令输出说明：
 
@@ -1185,7 +1185,7 @@ uname -a
 
 命令输出结果：
 
-![image-20230607192534365](C:\Users\26500\AppData\Roaming\Typora\typora-user-images\image-20230607192534365.png)
+![image-20230607192534365](./images/uname.png)
 
 - 显示当前系统的硬件架构。
 
@@ -1209,7 +1209,7 @@ uname -r
 
 命令输出结果：
 
-![img](https://img.alicdn.com/tfs/TB1FLVAHKL2gK0jSZPhXXahvXXa-528-47.png)
+![image-20230607194431197](./images/uname -r.png)
 
 - 显示操作系统名称。
 
@@ -1249,7 +1249,7 @@ uptime
 
 
 
-![img](https://img.alicdn.com/tfs/TB13YVJHHr1gK0jSZFDXXb9yVXa-606-50.png)
+![image-20230607194620187](./images/uptime.png)
 
 命令输出说明：
 
@@ -1285,7 +1285,7 @@ free -h
 
 
 
-![img](https://img.alicdn.com/tfs/TB1xm4IHHr1gK0jSZR0XXbP8XXa-747-88.png)
+![image-20230607194657366](./images/free -h.png)
 
 命令输出说明：
 
@@ -1313,7 +1313,7 @@ who
 
 
 
-![img](https://img.alicdn.com/tfs/TB1sTdKHQY2gK0jSZFgXXc5OFXa-527-69.png)
+![image-20230607194732576](./images/who.png)
 
 - 显示用户登录来源
 
@@ -1323,7 +1323,7 @@ who -l -H
 
 
 
-![img](https://img.alicdn.com/tfs/TB1phBIHKT2gK0jSZFvXXXnFXXa-524-94.png)
+![image-20230607194834344](./images/who -l -H.png)
 
 - 只显示当前用户
 
@@ -1333,7 +1333,7 @@ who -m -H
 
 
 
-![img](https://img.alicdn.com/tfs/TB1fMFKHO_1gK0jSZFqXXcpaXXa-510-67.png)
+![image-20230607194926422](./images/who -m -H.png)
 
 - 精简模式显示
 
@@ -1359,7 +1359,7 @@ last
 
 
 
-![img](https://img.alicdn.com/tfs/TB107xHHQL0gK0jSZFtXXXQCXXa-645-215.png)
+![image-20230607195007560](./images/last.png)
 
 由于这些信息都是以日志文件的形式保存在系统中，黑客可以很容易地对内容进行篡改，所以该命令输出的信息并不能作为服务器是否被入侵的依据。
 
@@ -1385,4 +1385,267 @@ history 10
 
 ```
 history -c
+```
+
+## 实验三、Linux系统的磁盘管理
+
+### 3.1 磁盘管理命令
+
+#### df
+
+df命令描述：该命令检查文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。
+
+df命令语法：
+
+```
+df [参数] [目录或文件名]
+```
+
+
+
+参数说明：
+
+| 参数 | 说明                                                 |
+| ---- | ---------------------------------------------------- |
+| -a   | 列出所有的文件系统，包括系统特有的/proc等文件系统。  |
+| -k   | 以KBytes为单位，返回各文件系统容量。                 |
+| -m   | 以MBytes为单位，返回各文件系统容量。                 |
+| -h   | 以GBytes、MBytes、KBytes为单位，返回各文件系统容量。 |
+| -H   | 以M=1000K取代M=1024K的进位方式显示各文件系统容量。   |
+| -T   | 显示文件系统类型。                                   |
+| -i   | 显示inode信息。                                      |
+
+df命令使用示例：
+
+示例一：显示磁盘使用情况。
+
+执行如下命令，显示磁盘使用情况。
+
+```
+df
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i1/O1CN016aEwTj1vtqZj4pV9N_!!6000000006231-2-tps-547-140.png)
+
+示例二：以inode模式来显示磁盘使用情况。
+
+执行如下命令，以inode模式来显示磁盘使用情况。
+
+```
+df -i
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01O0iqcr1gmmDyHcFXr_!!6000000004185-2-tps-542-143.png)
+
+示例三：显示系统内的所有特殊文件格式、名称及磁盘使用情况。
+
+执行如下命令，显示系统内的所有特殊文件格式、名称及磁盘使用情况。
+
+```
+df -aT
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01IftHWq1x1vAqSclYP_!!6000000006384-2-tps-801-518.png)
+
+示例四：以GBytes、MBytes、KBytes等格式显示各文件系统容量。
+
+执行如下命令，以GBytes、MBytes、KBytes等格式显示各文件系统容量。
+
+```
+df -h
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i1/O1CN013dSiDd29rT8iJrRdy_!!6000000008121-2-tps-478-143.png)
+
+#### du
+
+du命令描述：查看磁盘使用空间。du与df命令不同点在于，du命令用于查看文件和目录磁盘的使用空间。
+
+du命令语法：
+
+```
+du [参数] [文件或目录名称]
+```
+
+
+
+参数说明：
+
+| 参数 | 说明                        |
+| ---- | --------------------------- |
+| -a   | 列出所有的文件与目录容量。  |
+| -h   | 以G、M、K为单位，返回容量。 |
+| -s   | 列出总量。                  |
+| -S   | 列出不包括子目录下的总量。  |
+| -k   | 以KBytes为单位，返回容量。  |
+| -m   | 以MBytes为单位，返回容量。  |
+
+du命令使用示例：
+
+示例一：列出当前目录下的所有文件夹的容量。
+
+执行如下命令，列出当前目录下的所有文件夹的容量。
+
+```
+du
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i1/O1CN01zxmMB91Ux3iy3LxPw_!!6000000002583-2-tps-326-74.png)
+
+示例二：列出当前目录下的所有文件夹和文件的容量。
+
+执行如下命令，列出当前目录下的所有文件夹和文件的容量。
+
+```
+du -a
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01J09VAS1rYXgkgrIbj_!!6000000005643-2-tps-397-205.png)
+
+示例三：列出当前目录下的所有文件夹和文件的容量，并以G、M、K格式显示容量。
+
+执行如下命令，列出当前目录下的所有文件夹和文件的容量。
+
+```
+du -ah
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01aoGhcX218ZO3851np_!!6000000006940-2-tps-365-211.png)
+
+示例四：列出根目录底下每个目录所占用的容量，并以MBytes单位显示容量。
+
+执行如下命令，列出根目录底下每个目录所占用的容量，并以MBytes单位显示容量。
+
+```
+du -sm /*
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i2/O1CN01m2FHJe1qWQEp9vYHa_!!6000000005503-2-tps-566-395.png)
+
+#### fdisk
+
+fdisk命令描述：该命令用于磁盘分区。
+
+fdisk命令语法：
+
+```
+fdisk [-l] 装置名称
+```
+
+
+
+参数说明：
+
+| 参数 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| -l   | 输出后面装置名称的所有的分区内容。若仅有 fdisk -l时， 则系统将会把整个系统内能够搜寻到的装置的分区均列出来。 |
+
+fdisk命令使用示例：
+
+示例一：列出系统所有装置的分区信息。
+
+执行如下命令，列出系统所有装置的分区信息。
+
+```
+fdisk -l
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01DPL2ie1wGHyx02FeR_!!6000000006280-2-tps-578-195.png)
+
+示例二：列出系统中的根目录所在磁盘，并查阅该硬盘内的相关信息。
+
+a. 执行如下命令，找出根目录所在磁盘名。
+
+```
+df /
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01UpjO071NI70Z0noVE_!!6000000001546-2-tps-475-53.png)
+
+b. 执行如下命令，对磁盘/dev/vda进行分区操作。
+
+```
+fdisk /dev/vda
+```
+
+
+
+**注意：**
+
+对磁盘进行分区操作时，磁盘名不包含数字。
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i2/O1CN010ISWg41tWpRBITadE_!!6000000005910-2-tps-473-140.png)
+
+c. 执行如下命令，获取帮助。
+
+```
+m
+```
+
+
+
+返回结果如下所示。
+
+![img](https://img.alicdn.com/imgextra/i1/O1CN01Eu2WvL1Qj5B9TR6IU_!!6000000002011-2-tps-460-355.png)
+
+执行如下命令，查看磁盘状态。
+
+```
+p
+```
+
+
+
+返回结果如下所示，您可以查看到磁盘的相关状态。
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01LGMWzL1bYVoGfunKO_!!6000000003477-2-tps-602-210.png)
+
+
+
+d. 执行如下命令，不存储任何操作并离开。
+
+```
+q
 ```
