@@ -1649,3 +1649,581 @@ d. 执行如下命令，不存储任何操作并离开。
 ```
 q
 ```
+
+## 实验四、文件与权限
+
+### 4.1 文件目录管理命令
+
+#### ls
+
+命令描述： ls命令用于显示指定工作目录下的内容。
+
+命令格式：ls [参数] [目录名]。
+
+参数说明：
+
+| 参数 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| -a   | 显示所有文件及目录（包括隐藏文件）                           |
+| -l   | 将文件的权限、拥有者、文件大小等详细信息列出（ll等同于ls -l） |
+| -r   | 将文件反序列出（默认按英文字母正序）                         |
+| -t   | 将文件按创建时间正序列出                                     |
+| -R   | 递归遍历目录下文件                                           |
+
+命令使用示例：
+
+查看当前目录下的所有文件（包括隐藏文件）。
+
+```
+ll -a
+```
+
+
+
+命令输出结果：
+
+![img](https://img.alicdn.com/tfs/TB10gRXHQP2gK0jSZPxXXacQpXa-546-381.png)
+
+
+
+
+
+#### pwd
+
+命令描述：获取当前工作目录的绝对路径。
+
+命令使用示例：
+
+![img](https://img.alicdn.com/tfs/TB1UJhXHHr1gK0jSZR0XXbP8XXa-452-68.png)
+
+## 
+
+#### cd
+
+命令描述：cd命令用于切换工作目录。
+
+命令使用示例：
+
+
+
+![img](https://img.alicdn.com/tfs/TB16qddHHH1gK0jSZFwXXc7aXXa-412-217.png)
+
+
+
+在路径表示中：
+
+- 一个半角句号（.）表示当前目录，例如路径./app/log等同于app/log。
+- 两个半角句号（..）表示上级目录，例如路径/usr/local/../src等同于/usr/src，其中local和src目录同级。
+
+cd命令的默认参数为~，符号~表示当前用户的家目录，即在root用户登录时，命令cd、cd ~和cd /root执行效果相同。
+
+#### touch
+
+命令描述：touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。
+
+命令格式：touch [参数] [文件]。
+
+参数说明：
+
+| 参数 | 说明                               |
+| ---- | ---------------------------------- |
+| -c   | 如果指定文件不存在，不会建立新文件 |
+| -r   | 使用参考文件的时间记录             |
+| -t   | 设置文件的时间记录                 |
+
+
+
+命令使用示例：
+
+- 创建两个空文件。
+
+```
+touch demo1.txt demo2.txt
+```
+
+
+
+![img](https://img.alicdn.com/tfs/TB1X_Z.HuT2gK0jSZFvXXXnFXXa-466-133.png)
+
+
+
+- 修改demo1.txt的时间记录为当前系统时间。
+
+![img](https://img.alicdn.com/tfs/TB1kdaraaNj0u4jSZFyXXXgMVXa-478-128.png)
+
+
+
+- 更新demo2.txt的时间记录，使其和demo1.txt的时间记录相同。
+
+![img](https://img.alicdn.com/tfs/TB1iMpXHUT1gK0jSZFrXXcNCXXa-499-132.png)
+
+
+
+#### mkdir
+
+命令描述：mkdir命令用于新建子目录。-p参数确保目录名称存在，不存在的就新建一个。
+
+```
+mkdir -p a/b/c/d
+```
+
+
+
+命令使用示例：
+
+新建目录a/b/c/d，并使用tree命令查看创建后的目录结构。
+
+```
+tree
+```
+
+
+
+![img](https://ucc.alicdn.com/pic/developer-ecology/38c0fbe5803a4c27a33122328453d755.png)
+
+#### rm
+
+命令描述：rm命令用于删除一个文件或者目录。
+
+命令格式：rm [参数] [文件]。
+
+参数说明：
+
+| 参数 | 说明               |
+| ---- | ------------------ |
+| -i   | 删除前逐一询问确认 |
+| -f   | 无需确认，直接删除 |
+| -r   | 删除目录下所有文件 |
+
+命令使用示例：
+
+无需确认直接删除文件。
+
+```
+rm -rf demo*
+```
+
+
+
+![img](https://img.alicdn.com/tfs/TB1vLo8HqL7gK0jSZFBXXXZZpXa-522-213.png)
+
+
+
+无需确认直接删除目录a及其目录下所有子目录和文件。
+
+```
+rm -rf a
+```
+
+
+
+## ![img](https://img.alicdn.com/tfs/TB1asFeHQT2gK0jSZFkXXcIQFXa-415-85.png)
+
+#### cp
+
+命令描述： cp命令主要用于复制文件或目录。
+
+命令格式：cp [参数] [源文件] [目标文件]。
+
+参数说明：
+
+| 参数 | 说明                                                       |
+| ---- | ---------------------------------------------------------- |
+| -d   | 复制时保留链接                                             |
+| -f   | 覆盖已经存在的目标文件而不给出提示                         |
+| -i   | 覆盖前询问                                                 |
+| -p   | 除复制文件的内容外，还把修改时间和访问权限也复制到新文件中 |
+| -r   | 复制目录及目录内的所有项目                                 |
+
+命令使用示例：
+
+将目录c/d中的所有内容复制到目录a/b下。
+
+## ![img](https://img.alicdn.com/tfs/TB10Ck3HuL2gK0jSZPhXXahvXXa-673-465.png)
+
+#### mv
+
+命令描述： mv命令用来为文件或目录改名、或将文件或目录移入其它位置。
+
+命令格式：mv [参数] [源文件] [目标文件]
+
+参数说明：
+
+| 参数 | 说明                                           |
+| ---- | ---------------------------------------------- |
+| -i   | 若指定目录已有同名文件，则先询问是否覆盖旧文件 |
+| -f   | 如果目标文件已经存在，不会询问而直接覆盖       |
+
+命令使用示例：
+
+- 将文件名a.txt改为b.txt。 ![img](https://img.alicdn.com/tfs/TB1z1M_Hvb2gK0jSZK9XXaEgFXa-348-151.png)
+
+- 将c目录移动到a/b/c/d/下。 ![img](https://img.alicdn.com/tfs/TB1M9BiHRr0gK0jSZFnXXbRRXXa-387-276.png)
+
+- 将当前目录内容全部移动到/tmp目录中。
+
+```
+mv ./* /tmp
+```
+
+
+
+#### rename
+
+命令描述：rename命令用字符串替换的方式批量改变文件名。rename命令有C语言和Perl语言两个版本，这里介绍C语言版本的rename命令，不支持正则表达式。
+
+命令使用示例：
+
+- 将当前目录下所有文件名中的字符串demo改为大写的字符串DEMO。 ![img](https://img.alicdn.com/tfs/TB164qEaepyVu4jSZFhXXbBpVXa-410-150.png)
+
+- 将当前目录下所有.txt文件后缀都改为text。 ![img](https://img.alicdn.com/tfs/TB1l3pXHUT1gK0jSZFrXXcNCXXa-386-84.png)
+
+ls命令可以查看Linux系统上的文件、目录和设备的权限。
+
+![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103482.png)
+
+上述ls -l命令中显示的第一列就是文件权限信息，共11位字符，分5部分。
+
+- 第1位表示存档类型，d表示目录，-表示一般文件。
+- 第2~4位表示当前用户的权限（属主权限）。
+- 第5~7位表示同用户组的用户权限（属组权限）。
+- 第8~10位表示不同用户组的用户权限（其他用户权限）。
+- 第11位是一个半角句号.，表示SELinux安全标签。
+
+用户权限每组三位，rwx分别表示读、写、执行权限，对应八进制表示为4、2、1。
+
+例如efi目录的root用户权限为drwxr-xr-x.。
+
+- 该目录对root用户具有读写和执行所有权限。
+- 该目录对root组其他用户有读和执行权限。
+- 该目录对其他用户有读和执行权限。
+
+所以该权限表示对应八进制权限表示为：
+
+- 属主权限：4+2+1=7。
+- 属组权限：4+1=5。
+- 其他用户权限：4+1=5。
+
+即755。
+
+### 4.2 文件权限命令
+
+#### **chmod命令**
+
+chmod命令用于修改文件权限mode，-R参数以递归方式对子目录和文件进行修改。
+
+命令使用示例：
+
+1. 新建名为hello.sh的Shell脚本，该脚本将会输出Hello World。用ll命令可以看到新建的脚本没有执行权限，其权限用八进制表示为644。![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103486.png)
+2. 将hello.sh文件增加属主的执行权限。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103491.png)
+3. 将hello.sh文件撤销属主的执行权限。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103494.png)
+4. 将hello.sh文件权限修改为八进制表示的744权限。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103496.png)
+5. 使用bash命令解释器执行hello.sh脚本文件。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103498.png)
+
+其中，u+x表示增加属主的执行权限，u表示属主，g表示属组，o表示其他，a表示所有用户。
+
+#### **chown命令**
+
+chown命令修改文件的属主和属组；-R参数以递归方式对子目录和文件进行修改；ls -l命令显示的第三列和第四列就是文件的属主和属组信息。
+
+命令使用示例：
+
+1. 新建一个文本文件test.txt，用ll命令可以看到该文件的属主和属组是root。whoami命令可以查看当前Shell环境登录的用户名。![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103500.png)
+2. 创建两个用户。
+
+![img](https://ucc.alicdn.com/pic/developer-ecology/am22xgmbpd4os_ffa9087e520e46abb28b33e276d38a96.png)
+
+![img](https://ucc.alicdn.com/pic/developer-ecology/am22xgmbpd4os_5360a955109f46cfb6048ad53a66c30b.png)
+
+
+
+1. 修改test.txt文件的属主用户为test。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103502.png)
+2. 修改test.txt文件的属主和属组为admin。 ![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103504.png)
+
+#### **chgrp命令**
+
+chgrp命令用于修改文件的属组。
+
+命令使用示例：
+
+将test.txt文件的属组改为root。
+
+![img](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8524484261/p103508.png)
+
+## 实验五、文件管理
+
+### 5.1 磁盘管理命令
+
+#### cat
+
+cat命令描述：该命令用于连接文件并打印到标准输出设备上。
+
+cat命令语法：
+
+```
+cat [参数] [文件名]
+```
+
+
+
+参数说明：
+
+| 参数 | 说明                                                 |
+| ---- | ---------------------------------------------------- |
+| -n   | 由1开始对所有输出的行数进行编号。                    |
+| -b   | 由1开始对所有输出的行数进行编号，对于空白行不编号。  |
+| -s   | 当遇到有连续两行以上的空白行，就替换为一行的空白行。 |
+| -E   | 在每行结束处显示$。                                  |
+| -T   | 将 TAB 字符显示为^I。                                |
+
+cat命令使用示例：
+
+a. 执行如下命令，将一个自增序列写入test1.txt文件中。
+
+```
+for i in $(seq 1 10); do echo $i >> test1.txt ; done
+```
+
+
+
+![image-20230607200809856](./images/写入文件.png)
+
+b. 执行如下命令，查看文件test1.txt内容。
+
+```
+cat test1.txt
+```
+
+
+
+返回结果如下所示。
+
+![image-20230607200924258](./images/查看文件.png)
+
+c. 执行如下命令，将test1.txt的文件内容加上行号后输入到test2.txt文件。
+
+```
+cat -n test1.txt > test2.txt
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01qJenF128Ei0PpR1EZ_!!6000000007901-2-tps-532-22.png)
+
+d. 执行如下命令，查看文件test2.txt内容。
+
+```
+cat test2.txt
+```
+
+
+
+返回结果如下所示。
+
+![image-20230607201039857](./images/cat test2.txt.png)
+
+e. 执行如下命令，将test1.txt文件内容清空。
+
+```
+cat /dev/null > test1.txt
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01TD6Vhk24k4fLqw48o_!!6000000007428-2-tps-504-23.png)
+
+f. 执行如下命令，查看文件test1.txt内容。
+
+```
+cat test1.txt
+```
+
+
+
+返回结果如下所示，您可以看到test1.txt文件没有任何内容。
+
+![image-20230607201132764](./images/清空并查看.png)
+
+#### cmp
+
+cmp命令描述：该命令用于比较两个文件是否有差异。当相互比较的两个文件完全一样时，该指令不会显示任何信息。否则会标示出第一个不同之处的字符和列数编号。当不指定任何文件名称，或文件名为"-"，则cmp指令会从标准输入设备读取数据。
+
+cmp命令语法：
+
+```
+cmp [-clsv][-i <字符数目>][--help][第一个文件][第二个文件]
+```
+
+
+
+参数说明：
+
+| 参数          | 说明                                                       |
+| ------------- | ---------------------------------------------------------- |
+| -c            | 除了标明差异处的十进制字码之外，一并显示该字符所对应字符。 |
+| -i <字符数目> | 指定一个数目。                                             |
+| -l            | 标示出所有不一样的地方。                                   |
+| -s            | 不显示错误信息。                                           |
+| -v            | 显示版本信息。                                             |
+| --help        | 在线帮助。                                                 |
+
+cmp命令使用示例：
+
+a. 执行如下命令，将一个自增序列1-5写入test1.txt文件中。
+
+```
+for i in $(seq 1 5); do echo $i >> test1.txt ; done
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN014OobJp26crfAKsmLo_!!6000000007683-2-tps-721-26.png)
+
+b. 执行如下命令，比较test1.txt文件和test2.txt文件是否相同。
+
+```
+cmp test1.txt test2.txt
+```
+
+
+
+返回结果如下所示，您可以看到test1.txt文件和test2.txt文件第一行就有不同之处。
+
+![img](https://img.alicdn.com/imgextra/i2/O1CN01SLhpxA1i4T8p6OHLf_!!6000000004359-2-tps-493-41.png)
+
+#### diff
+
+diff命令描述：该命令用于比较文件的差异。diff命令以逐行的方式，比较文本文件的异同处。如果指定要比较目录，则diff会比较目录中相同文件名的文件，但不会比较其中子目录。
+
+diff命令语法：
+
+```
+diff [参数] [文件或目录1] [文件或目录2]
+```
+
+
+
+参数说明：
+
+| 参数     | 说明                                                     |
+| -------- | -------------------------------------------------------- |
+| -<行数>  | 指定要显示多少行的文本。此参数必须与-c或-u参数一并使用。 |
+| -c       | 显示全部内文，并标出不同之处。                           |
+| -u       | 以合并的方式来显示文件内容的不同。                       |
+| -a       | diff预设只会逐行比较文本文件。                           |
+| -b       | 不检查空格字符的不同。                                   |
+| -d       | 使用不同的演算法，以较小的单位来做比较。                 |
+| -i       | 不检查大小写的不同。                                     |
+| -y       | 以并列的方式显示文件的异同之处。                         |
+| -W<宽度> | 在使用-y参数时，指定栏宽。                               |
+
+diff命令使用示例：
+
+执行如下命令，比较test1.txt文件和test2.txt文件，以并排格式输出。
+
+```
+diff test1.txt test2.txt -y -W 50
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i3/O1CN01sBqSAE1t1E6fc3Cz1_!!6000000005841-2-tps-569-36.png)
+
+返回结果如下所示，您可以看到test1.txt文件和test2.txt文件的不同之处。
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01CMPZdr1keJMnfHc4K_!!6000000004708-2-tps-591-190.png)
+
+#### file
+
+file命令描述：该命令用于辨识文件类型。
+
+file命令语法：
+
+```
+file [参数] [文件]
+```
+
+
+
+参数说明：
+
+| 参数         | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| -b           | 列出辨识结果时，不显示文件名称。                             |
+| -c           | 详细显示指令执行过程，便于排错或分析程序执行的情形。         |
+| -f<名称文件> | 指定名称文件，其内容有一个或多个文件名称时，让file依序辨识这些文件，格式为每列一个文件名称。 |
+| -L           | 直接显示符号连接所指向的文件的类别。                         |
+| -v           | 显示版本信息。                                               |
+| -z           | 解读压缩文件的内容。                                         |
+
+file命令使用示例：
+
+a. 执行如下命令，显示test1.txt文件类型。
+
+```
+file test1.txt
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i1/O1CN01yJoNQq1PkAV5u5I6H_!!6000000001878-2-tps-413-21.png)
+
+返回结果如下所示，您可以看到test1.txt文件类型是ASCII text。
+
+![img](https://img.alicdn.com/imgextra/i2/O1CN018ANX871p6wahjHrCv_!!6000000005312-2-tps-436-42.png)
+
+b. 执行如下命令，显示test2.txt文件类型并不显示文件名称。
+
+```
+file -b test2.txt
+```
+
+
+
+![img](https://img.alicdn.com/imgextra/i4/O1CN01m3NQd91J3g3rngqQM_!!6000000000973-2-tps-449-22.png)
+
+#### find
+
+find命令描述：该命令用来在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则find命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。
+
+find命令语法：
+
+```
+find [参数] [文件]
+```
+
+
+
+参数说明：
+
+| 参数       | 说明                                                         |
+| ---------- | ------------------------------------------------------------ |
+| -mount     | 只检查和指定目录在同一个文件系统下的文件，避免列出其它文件系统中的文件。 |
+| -amin n    | 在过去n分钟内被读取过文件。                                  |
+| -type c    | 文件类型是c的文件。                                          |
+| -cmin n    | 在过去n分钟内被修改过。                                      |
+| -name name | 查找文件名称为name的文件。                                   |
+
+find命令使用示例：
+
+a. 执行如下命令，将当前目录及其子目录下所有文件后缀为`.txt`的文件列出来。
+
+```
+find . -name "*.txt"
+```
+
+返回结果如下所示。
+
+![image-20230607201251085](./images/find.png)
+
+
+
+b. 执行如下命令，查找系统中所有文件长度为0的普通文件，并列出它们的完整路径。
+
+```
+find / -type f -size 0 -exec ls -l {} \;
+```
+
+返回结果如下所示。
+
+![image-20230607201403710](./images/查找系统中所有长度为0的普通文件.png)
