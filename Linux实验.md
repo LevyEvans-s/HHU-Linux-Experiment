@@ -1151,7 +1151,7 @@ ifconfig
 
 
 
-![image-20230607192504876](C:\Users\26500\AppData\Roaming\Typora\typora-user-images\image-20230607192504876.png)
+![image-20230607192504876](F:\学习资料\大学课程\Linux\images\ifconfig.png)
 
 命令输出说明：
 
