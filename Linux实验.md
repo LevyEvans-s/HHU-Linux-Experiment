@@ -1151,7 +1151,7 @@ ifconfig
 
 
 
-![image-20230607192504876](F:\学习资料\大学课程\Linux\images\ifconfig.png)
+![image-20230607192504876](.\images\ifconfig.png)
 
 命令输出说明：
 
