@@ -2164,13 +2164,9 @@ a. 执行如下命令，显示test1.txt文件类型。
 file test1.txt
 ```
 
-
-
-![img](https://img.alicdn.com/imgextra/i1/O1CN01yJoNQq1PkAV5u5I6H_!!6000000001878-2-tps-413-21.png)
-
 返回结果如下所示，您可以看到test1.txt文件类型是ASCII text。
 
-![img](https://img.alicdn.com/imgextra/i2/O1CN018ANX871p6wahjHrCv_!!6000000005312-2-tps-436-42.png)
+![image-20230607201829760](./images/fie text1.txt.png)
 
 b. 执行如下命令，显示test2.txt文件类型并不显示文件名称。
 
